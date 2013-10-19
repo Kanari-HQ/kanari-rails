@@ -1,6 +1,25 @@
-I'm working fuckers!!!! AudienceAnalog
-
-.btn.btn-primary
-  Testing button
-
 = image_tag('kanari.jpeg')
+%br
+
+%h1
+  Create Event
+%br
+= link_to "Click here to create", new_event_path
+%br
+
+%h1
+  Join event
+= form_tag(vote_votes_path, method: "get") do
+  .field
+    = label_tag :event_code
+    = text_field_tag :event_code
+  .actions
+    = submit_tag 'Join'
+
+- if @events.present?
+  %h1
+    Most Recent Events
+  %ul
+  - @events.each do |event|
+    %li
+      = link_to event.title, event
