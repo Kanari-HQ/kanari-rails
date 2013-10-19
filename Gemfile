@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 group :development do
   gem 'haml-rails'
+
 end
 
 group :test do
