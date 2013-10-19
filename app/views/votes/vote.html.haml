@@ -1,0 +1,16 @@
+- if @event.blank?
+  = 'Sorry but we couldnt find this Event , please try re-entering the code'
+- else
+  %h1 Event Title
+  %h2
+    = @event.title
+
+  = form_for @vote do |f|
+    .field
+      = f.label :event_id
+      = f.text_field :event_id, value: @event.id
+    .field
+      = f.label :vote_type
+      = f.text_field :vote_type
+    .actions
+      = f.submit 'Submit reaction type'
