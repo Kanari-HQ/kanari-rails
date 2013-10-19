@@ -178,7 +178,7 @@ Kanari.main = (function($, document, window, undefined) {
 	      $("#uploadStatus").html("Uploading...");
 	      SC.recordUpload({
 	        track: {
-	          title: "test",
+	          title: $("#controlButton").data("track"),
 	          sharing: "public"
 	        }
 	      }, function(track){
