@@ -15,7 +15,7 @@ Kanari.main = (function($, document, window, undefined) {
     // configuration properties
 
 	var secondsInYear = 60 * 60 * 24 * 365;
-	
+	var graphTitle = $("#controlButton").data("track");
 	// model configuration (data)
 	var model = {
 	  title: 'Kanari',
@@ -121,6 +121,9 @@ Kanari.main = (function($, document, window, undefined) {
 			        top:   0
 			    });
 			});
+
+        soundcloud.addEventListener('onPlayerReady', alert("hi"));
+
     }
 
     /* Private Methods ________________________________________________________________ */
