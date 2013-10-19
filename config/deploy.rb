@@ -90,3 +90,19 @@ deploy.task :restart, :roles => :app do
   # Restart Application
   run "touch #{current_path}/tmp/restart.txt"
 end
+
+
+before "deploy:rollback:revision", "deploy:rollback_database"
+
+desc "Rolls back database to migration level of the previously deployed release"
+task :rollback_database, :roles => :db, :only => { :primary => true } do
+  if releases.length < 2
+    abort "could not rollback the code because there is no prior release"
+  else
+    rake = fetch(:rake, "rake")
+    rails_env = fetch(:rails_env, "production")
+    migrate_env = fetch(:migrate_env, "")
+    migrate_target = fetch(:migrate_target, :latest)
+    run "cd #{current_path}; #{rake} RAILS_ENV=#{rails_env} #{migrate_env} db:migrate VERSION=`cd #{File.join(previous_release, 'db', 'migrate')} && ls -1 [0-9]*_*.rb | tail -1 | sed -e s/_.*$//`"
+  end
+end
