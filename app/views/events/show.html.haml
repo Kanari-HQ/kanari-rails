@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @event.title
+%p
+  %b Event code:
+  = @event.event_code
+%p
+  %b Soundcloud url:
+  = @event.soundcloud_url
+%p
+  %b Start time:
+  = @event.start_time
+%p
+  %b End time:
+  = @event.end_time
+
+= link_to 'Edit', edit_event_path(@event)
+\|
+= link_to 'Back', events_path

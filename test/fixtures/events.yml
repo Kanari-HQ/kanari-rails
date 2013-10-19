@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  event_code: MyString
+  soundcloud_url: MyString
+  start_time: 2013-10-19 11:10:17
+  end_time: 2013-10-19 11:10:17
+
+two:
+  title: MyString
+  event_code: MyString
+  soundcloud_url: MyString
+  start_time: 2013-10-19 11:10:17
+  end_time: 2013-10-19 11:10:17
