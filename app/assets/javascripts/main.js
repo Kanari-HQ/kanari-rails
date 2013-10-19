@@ -185,6 +185,7 @@ Kanari.main = (function($, document, window, undefined) {
 	        }
 	      }, function(track){
 			  $("#uploadStatus").html("Uploaded: <a href='" + track.permalink_url + "'>" + track.permalink_url + "</a>");
+              $("#event-uri").val(track.uri);
 			  $("#uploadStatus").trigger("UPLOAD_COMPLETE", [{uri: track.uri}]);
 		  });
 	    }
@@ -203,7 +204,7 @@ Kanari.main = (function($, document, window, undefined) {
         }, 3000);
 
         setTimeout(function() {
-            console.log("drawing player after 5 seconds" + uri);
+            console.log("drawing player after many seconds or it bombs out." + uri);
             SC.oEmbed(uri, {auto_play: false,
                             color: "#000000",
                             theme_color: "#000000",
@@ -219,13 +220,14 @@ Kanari.main = (function($, document, window, undefined) {
                             show_comments: false,
                             show_playcount:	false,
                             show_user: false
-                        }, document.getElementById("player"))}, 5000);
-
+                        }, document.getElementById("player"))}, 10000);
 	}
 	
 	
 	function genPlayer(){
-	  $("#uploadStatus").trigger("UPLOAD_COMPLETE", [{uri: 'https://api.soundcloud.com/tracks/116127335'}]);
+      var eventUri = $('#event-uri').val();
+      console.log("Testing player: "+ eventUri);
+	  $("#uploadStatus").trigger("UPLOAD_COMPLETE", [{uri: eventUri}]);
 	}
 	
 	
