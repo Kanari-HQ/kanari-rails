@@ -1,16 +1,49 @@
 - if @event.blank?
-  = 'Sorry but we couldnt find this Event , please try re-entering the code'
+  = "No event exists for event_code: '#{@event_code}', baby go back and try again"
 - else
-  %h1 Event Title
-  %h2
-    = @event.title
+  :javascript
+    var EVENT_ID = "#{@event.id}";
+    var RESPONDANT_ID = "#{session[:session_id]}";
 
-  = form_for @vote do |f|
-    .field
-      = f.label :event_id
-      = f.text_field :event_id, value: @event.id
-    .field
-      = f.label :vote_type
-      = f.text_field :vote_type
-    .actions
-      = f.submit 'Submit reaction type'
+  .buttons
+    %a.one{"data-response" => "thumbs-up", href: "#"}
+      %span
+        %i.glyphicon.glyphicon-thumbs-up
+    %a.two{"data-response" => "thumbs-down", href: "#"}
+      %span
+        %i.glyphicon.glyphicon-thumbs-down
+    %a.three{"data-response" => "love-it", href: "#"}
+      %span
+        %i.glyphicon.glyphicon-heart
+    %a.four{"data-response" => "im-confused", href: "#"}
+      %span
+        %i.glyphicon.glyphicon-question-sign
+  %a.info{"data-target" => "#infoModal", "data-toggle" => "modal", href: "#"}
+    %i.glyphicon.glyphicon-info-sign
+  %span.feedback Thanks
+  %span.brand
+    %em Kanari
+  #infoModal.modal.fade{"data-show" => "true"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+          %h4.modal-title
+            = "Welcome to '#{@event.title}!'"
+        .modal-body
+          %p.lead
+            Click
+            %em like
+            = succeed "," do
+              %i.glyphicon.glyphicon-thumbs-up
+            %em dislike
+            = succeed "," do
+              %i.glyphicon.glyphicon-thumbs-down
+            %em love
+            %i.glyphicon.glyphicon-heart
+            and
+            %em confused
+            %i.glyphicon.glyphicon-question-sign
+            as many times as you see fit during the event. Your feedback will help us improve the event
+        .modal-footer
+          %button.btn.btn-purple.btn-large{"data-dismiss" => "modal", type: "button"} Get Started Now

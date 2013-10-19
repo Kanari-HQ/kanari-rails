@@ -10,9 +10,20 @@
     <![endif]-->
   %head
     %title Kanari
-    = stylesheet_link_tag    "application", media: "all"
-    = javascript_include_tag "application"
-    = csrf_meta_tags
+
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
     = yield :javascript_placeholder
+    = csrf_meta_tags
+
+    %meta{name:"viewport", content:"width=device-width, initial-scale=1.0"}
+
+    :plain
+      <!--[if lt IE 9]>
+    = javascript_include_tag "manifests/ie_scripts"
+    :plain
+      <![endif]-->
+
+
   %body
-  = yield
+    = yield
