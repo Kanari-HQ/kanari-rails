@@ -1,3 +1,4 @@
+.idea/*
 vendor/bundles/**/*
 .DS_Store
 *.rbc
@@ -19,4 +20,3 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 .project
-config/initializers/secret_token.rb
