@@ -1,3 +1,5 @@
+require 'minitest/pride' # Coloring
+
 ENV["RAILS_ENV"] ||= "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
@@ -5,11 +7,6 @@ require 'rails/test_help'
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!
 
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-  #
-  # Note: You'll currently still have to declare fixtures explicitly in integration tests
-  # -- they do not yet inherit this setting
-  fixtures :all
-
-  # Add more helper methods to be used by all tests here...
+  # if repeating "FactoryGirl" is too verbose, ie. create(:user) instead of FactoryGirl.create(:user)
+  include FactoryGirl::Syntax::Methods
 end

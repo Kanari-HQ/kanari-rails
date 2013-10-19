@@ -4,6 +4,12 @@ group :development do
   gem 'haml-rails'
 end
 
+group :test do
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'  # Used for fixtures, provides integration between factory_girl and rails
+  gem 'guard-minitest'
+  gem 'guard-spork'
+end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
