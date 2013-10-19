@@ -1,11 +1,9 @@
+- content_for :javascript_placeholder do
+  = javascript_include_tag "admin", "data-turbolinks-track" => true
+
+
 %p#notice= notice
 
-%p
-  %b Title:
-  = @event.title
-%p
-  %b Event code:
-  = @event.event_code
 
 - if @event.soundcloud_url
   %p
@@ -25,3 +23,24 @@
 = link_to 'Edit', edit_event_path(@event)
 \|
 = link_to 'Return Home', root_path
+
+%header
+  %h1
+    = @event.title.titleize
+  %h2
+    Your Event Code:
+    = @event.event_code
+%section.record
+  #recorderUI.reset
+    %a#controlButton.record{href: "#"}
+      %span#state.btn.btn-danger Record
+      %h1#timer 0:00
+    #otherControls
+      %a#reset.btn.btn-success{href: "#"} Reset
+      %a#upload.btn.btn-info{href: "#"} Upload
+    #uploadStatus
+  %button.btn.btn-info#makeplayer Test Player
+.container{style: "position: relative; overflow: hidden;"}
+  #graph
+  #player
+  #testing{style: "position: absolute; height: 100%; background: #ff0000; width: 3px;"}
