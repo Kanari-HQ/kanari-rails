@@ -1,0 +1,99 @@
+body, html {
+  margin: 0;
+  padding:0;
+  height: 100%;
+}
+
+.modal-content {
+  color: #ccc;
+  background: #111;
+
+  .close {
+    color: #eee;
+  }
+}
+
+.btn-purple {
+  color: #fff;
+  background: rgb(88, 72, 138);
+}
+
+.info {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  font-size: 1.5em;
+  color: #ddd;
+  opacity: .4;
+  -webkit-tap-highlight-color: rgba(255,255,255, .1);
+  tap-highlight-color: rgba(255,255,255, .1);
+
+  &:active {
+    color: #fff;
+  }
+}
+
+.brand {
+  position: absolute;
+  right: 8px;
+  bottom: 5px;
+  color: rgba(255,255,255,.3);
+  font-size: 1.2em;
+}
+
+.feedback {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: #111;
+  color: #fff;
+  padding: 5px;
+}
+
+.buttons {
+  overflow: hidden;
+  height: 100%;
+
+  a {
+    width: 50%;
+    height: 50%;
+    float: left;
+    position: relative;
+    -webkit-tap-highlight-color: rgba(255,255,255, .1);
+    tap-highlight-color: rgba(255,255,255, .1);
+
+    &:active {
+      opacity: .9;
+    }
+
+    span{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -.5em;
+      margin-top: -.5em;
+      font-size: 4em;
+      color: #eee;
+      font-weight: bold;
+    }
+
+    &.one, &.four  {
+      background: #111;
+      span {
+        color: #999;
+      }
+
+    }
+    &.two, &.three {
+      background: rgb(88, 72, 138);
+      span {
+        color: #000;
+      }
+    }
+  }
+}
+
+
+
+
