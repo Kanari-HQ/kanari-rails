@@ -1,3 +1,4 @@
+vendor/bundles/**/*
 .DS_Store
 *.rbc
 *.sassc
