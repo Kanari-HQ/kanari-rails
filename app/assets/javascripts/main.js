@@ -14,6 +14,7 @@ Kanari.main = (function($, document, window, undefined) {
     "use strict";
     // configuration properties
 
+
 	var secondsInYear = 60 * 60 * 24 * 365;
 	
 	// model configuration (data)
@@ -128,6 +129,7 @@ Kanari.main = (function($, document, window, undefined) {
 	//chart
 	
 	function makeChart(){
+        console.log("making the Chart");
 		var lineChart = new MeteorCharts.Line({
 					  container: 'graph',
 					  model: model,
@@ -193,29 +195,37 @@ Kanari.main = (function($, document, window, undefined) {
 	
 	function showPlayer(e, object){
 		var uri = object.uri;
-		console.log(uri)
-		makeChart();
-		SC.oEmbed(uri, {auto_play: false,
-						color: "#000000",
-						theme_color: "#000000",
-						iframe: true,
-						show_artwork: false,
-						"height": 81,
-						maxwidth: 960,
-						maxheight: 100,
-						buying:	false,
-						liking:	false,
-						download: false,
-						sharing: false,
-						show_comments: false,
-						show_playcount:	false,
-						show_user: false
-					}, document.getElementById("player"));
+		console.log("SoundCloud track loading:" + uri)
+
+        setTimeout(function() {
+            console.log("called making chart");
+            makeChart()
+        }, 3000);
+
+        setTimeout(function() {
+            console.log("drawing player after 5 seconds" + uri);
+            SC.oEmbed(uri, {auto_play: false,
+                            color: "#000000",
+                            theme_color: "#000000",
+                            iframe: true,
+                            show_artwork: false,
+                            "height": 81,
+                            maxwidth: 960,
+                            maxheight: 100,
+                            buying:	false,
+                            liking:	false,
+                            download: false,
+                            sharing: false,
+                            show_comments: false,
+                            show_playcount:	false,
+                            show_user: false
+                        }, document.getElementById("player"))}, 5000);
+
 	}
 	
 	
 	function genPlayer(){
-	  $("#uploadStatus").trigger("UPLOAD_COMPLETE", [{uri: 'http://soundcloud.com/audienceanalog/test'}]);
+	  $("#uploadStatus").trigger("UPLOAD_COMPLETE", [{uri: 'https://api.soundcloud.com/tracks/116127335'}]);
 	}
 	
 	
