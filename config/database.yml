@@ -27,7 +27,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: audienceanalog
+  database: railsrumble_production
   pool: 5
   username: psql
   password: mrilikedata
