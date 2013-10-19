@@ -18,7 +18,7 @@ Kanari.main = (function($, document, window, undefined) {
 	
 	// model configuration (data)
 	var model = {
-	  title: 'Event Kanari', 
+	  title: 'Kanari',
 	  series: [{
 	    title: 'Thumbs Up',
 	    points: [
@@ -141,6 +141,7 @@ Kanari.main = (function($, document, window, undefined) {
 	    SC.record({
 	      start: function(){
 	        setRecorderUIState("recording");
+            $("#controlState").text("Stop");
 	      },
 	      progress: function(ms, avgPeak){
 	        updateTimer(ms);
@@ -151,6 +152,7 @@ Kanari.main = (function($, document, window, undefined) {
 	
 	function stopRecord(e) {
 	    setRecorderUIState("recorded");
+        $("#controlState").text("Play");
 	    SC.recordStop();
 	    e.preventDefault();
 	}
