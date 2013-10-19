@@ -6,6 +6,10 @@
 
 
 - if @event.soundcloud_url
+  .container{style: "position: relative; overflow: hidden;"}
+    #graph{"data-url" => "#{@event.soundcloud_url}"}
+    #player
+    #testing{style: "position: absolute; height: 100%; background: #ff0000; width: 3px;"}
   %p
     %b Soundcloud url:
     = @event.soundcloud_url
@@ -32,7 +36,7 @@
     = @event.event_code
 %section.record
   #recorderUI.reset
-    %a#controlButton.record{href: "#"}
+    %a#controlButton.record{href: "#", "data-track" => "#{@event.title}"}
       %span#controlState.btn.btn-danger Record
     %h1#state
     %h1#timer 0:00
