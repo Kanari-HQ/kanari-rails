@@ -1,4 +1,4 @@
-Audienceanalog::Application.routes.draw do
+Kanari::Application.routes.draw do
 
   resources :events
 
