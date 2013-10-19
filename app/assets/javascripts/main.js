@@ -14,10 +14,14 @@ Kanari.main = (function($, document, window, undefined) {
     "use strict";
     // configuration properties
 
+    //SC Config
 
+
+
+
+    // model configuration (data)
 	var secondsInYear = 60 * 60 * 24 * 365;
 	var graphTitle = $("#controlButton").data("track");
-	// model configuration (data)
 	var model = {
 	  title: 'Kanari',
 	  series: [{
@@ -108,6 +112,9 @@ Kanari.main = (function($, document, window, undefined) {
 		// line charts are instantiated with a container DOM element,
 		// a model, and a view
 
+        var iframeElement;
+        var widget;
+
 		$(document)
 			.on('click', '#recorderUI.reset #controlButton', startRecord)
 			.on('click', '#recorderUI.recording #controlButton, #recorderUI.playing #controlButton', stopRecord)			
@@ -116,14 +123,21 @@ Kanari.main = (function($, document, window, undefined) {
 			.on('click', '#makeplayer', genPlayer)
 			.on('click', '#reset', reset)
 			.on('UPLOAD_COMPLETE', showPlayer)
-			.on('mousemove', function(e){
+            .on('mousemove', function(e){
 			    $('#testing').css({
 			        left:  e.pageX,
 			        top:   0
 			    });
-			});
+			})
+            .on('WIDGET_INITIALIZED', function(){
+                iframeElement   = document.querySelector('iframe');
+                widget   = SC.Widget(iframeElement);
+                console.log(widget);
+            })
 
-        soundcloud.addEventListener('onPlayerReady', alert("hi"));
+        //@nathanTODO next step attach click event on SC graph to set number of milliseconds and play from location on chart
+
+
 
     }
 
@@ -217,18 +231,20 @@ Kanari.main = (function($, document, window, undefined) {
                             maxheight: 100,
                             buying:	false,
                             liking:	false,
+                            enable_api: true,
                             download: false,
                             sharing: false,
                             show_comments: false,
                             show_playcount:	false,
                             show_user: false
                         }, document.getElementById("player"))}, 5000);
-
+        setTimeout(function() {
+            $(document).trigger("WIDGET_INITIALIZED");
+        }, 8000);
 	}
-	
-	
+
 	function genPlayer(){
-	  $("#uploadStatus").trigger("UPLOAD_COMPLETE", [{uri: 'https://api.soundcloud.com/tracks/116127335'}]);
+	  $("#uploadStatus").trigger("UPLOAD_COMPLETE", [{uri: 'http://soundcloud.com/audienceanalog/macbeth'}]);
 	}
 	
 	
