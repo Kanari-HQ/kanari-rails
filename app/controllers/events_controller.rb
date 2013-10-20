@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :ajax_get_aggregate_votes]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :ajax_get_aggregate_votes, :ajax_set_event_time]
 
   # GET /events
   # GET /events.json
@@ -14,6 +14,12 @@ class EventsController < ApplicationController
 
   def ajax_get_aggregate_votes
     render json: @event.aggregate_votes.to_json
+  end
+
+  def ajax_set_event_time
+    which_event_time = params[:which_event_time]
+    @event.update_attribute(which_event_time, Time.now)
+    head :ok
   end
 
   # GET /events/new

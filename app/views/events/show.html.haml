@@ -31,6 +31,8 @@
     = @event.title.titleize
     | Event Code:
     %span.event-code
+  %h3
+    Event Code (for participants):
     = @event.event_code
 %section.record
   #recorderUI.reset
@@ -48,8 +50,9 @@
       #state
     %h1#timer 0:00
     #uploadStatus
-  %input{id: "event-uri", type: "text", value: "https://api.soundcloud.com/tracks/116130140", size: "100"}
-  %button.btn.btn-info#makeplayer Test Player
+  - if @event.start_time.present?
+    %button.btn.btn-info#makeplayer View Stats
+
 .kanari-container{style: "position: relative; overflow: hidden;"}
   #graph
   #player
