@@ -29,6 +29,8 @@
 %header
   %h1
     = @event.title.titleize
+    | Event Code:
+    %span.event-code
   %h3
     Event Code (for participants):
     = @event.event_code
