@@ -9,7 +9,9 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails'  # Used for fixtures, provides integration between factory_girl and rails
   gem 'guard-minitest'
+  gem 'capybara'
   gem 'guard-spork'
+  gem 'turn'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
