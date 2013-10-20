@@ -2,7 +2,8 @@ Kanari::Application.routes.draw do
 
   resources :events do
     collection do
-      get :ajax_get_aggregate_votes
+      get  :ajax_get_aggregate_votes
+      post :ajax_set_event_time
     end
   end
 

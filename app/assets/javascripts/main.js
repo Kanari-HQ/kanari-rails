@@ -114,6 +114,8 @@ Kanari.main = (function($, document, window, undefined) {
 	    updateTimer(0);
 	    SC.record({
 	      start: function(){
+            console.log("SC.record#start method");
+            updateEventTime('start_time');
 	        setRecorderUIState("recording");
             $("#controlState").text("Stop");
 	      },
@@ -125,9 +127,11 @@ Kanari.main = (function($, document, window, undefined) {
 	}
 	
 	function stopRecord(e) {
+        console.log("stopRecord method");
+        updateEventTime('end_time');
 	    setRecorderUIState("recorded");
         $("#controlState").text("Play");
-	    SC.recordStop();
+        SC.recordStop();
 	    e.preventDefault();
 	}
 	
@@ -224,6 +228,25 @@ Kanari.main = (function($, document, window, undefined) {
 	  $("#recorderUI").attr("class", state);
       $("#state").text(state);
 	}
+
+    function updateEventTime(which_time)
+    {
+        $.ajax({
+            type: 'POST',
+            data: {
+                id: EVENT_ID,
+                which_event_time: which_time
+            },
+            timeout: 10000,
+            url: '/events/ajax_set_event_time',
+            success: function (data){
+                console.log("Updated start_time for event successfully");
+            },
+            error: function (e) {
+                console.log("An error occurred, text: " + e.statusText + "; statusCode: " + e.status);
+            }
+        });
+    }
 
     return {
         init: init
