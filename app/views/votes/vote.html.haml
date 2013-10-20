@@ -6,16 +6,16 @@
     var RESPONDANT_ID = "#{session[:session_id]}";
 
   .buttons
-    %a.one{"data-response" => "thumbs-up", href: "#"}
+    %a.one{"data-response" => VoteType::THUMBS_UP, href: "#"}
       %span
         %i.glyphicon.glyphicon-thumbs-up
-    %a.two{"data-response" => "thumbs-down", href: "#"}
+    %a.two{"data-response" => VoteType::THUMBS_DOWN, href: "#"}
       %span
         %i.glyphicon.glyphicon-thumbs-down
-    %a.three{"data-response" => "love-it", href: "#"}
+    %a.three{"data-response" => VoteType::LOVE_IT, href: "#"}
       %span
         %i.glyphicon.glyphicon-heart
-    %a.four{"data-response" => "im-confused", href: "#"}
+    %a.four{"data-response" => VoteType::IM_CONFUSED, href: "#"}
       %span
         %i.glyphicon.glyphicon-question-sign
   %a.info{"data-target" => "#infoModal", "data-toggle" => "modal", href: "#"}
