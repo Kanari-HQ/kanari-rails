@@ -7,19 +7,20 @@
 .container
   %p#notice= notice
 
-  = link_to 'Edit', edit_event_path(@event)
+  = link_to 'Edit Event Details', edit_event_path(@event)
   \|
   = link_to 'Return Home', root_path
 
 %header
   %h1
     = @event.title.titleize
-  %h2
-    1. Share this with event code with your audience
-    .event-code
-      = "&nbsp;&nbsp;&nbsp;#{@event.event_code}"
-    2. Record your event, and have your audience
-    = link_to "cast their votes", vote_votes_path({:event_code => @event.event_code}), target: "_blank"
+  - if @event.soundcloud_uri.blank?
+    %h2
+      1. Share this with event code with your audience
+      .event-code
+        = "&nbsp;&nbsp;&nbsp;#{@event.event_code}".html_safe
+      2. Record your event, and have your audience
+      = link_to "cast their votes", vote_votes_path({:event_code => @event.event_code}), target: "_blank"
 
 
 %section.record{style: "display:#{@event.soundcloud_uri.present? ? 'none' : 'block'}"}
