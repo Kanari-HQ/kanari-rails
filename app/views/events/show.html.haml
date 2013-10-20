@@ -49,7 +49,8 @@
     %h1#timer 0:00
     %h3#state
     #uploadStatus
-  - if @event.start_time.present?
+  - if @event.soundcloud_uri.present?
+    %input{id: "event-uri", type: "hidden", value: "#{@event.soundcloud_uri}"}
     %button.btn.btn-info#makeplayer View Stats
 
 .kanari-container{style: "position: relative; overflow: hidden;"}

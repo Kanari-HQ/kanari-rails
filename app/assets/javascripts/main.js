@@ -116,7 +116,7 @@ Kanari.main = (function($, document, window, undefined) {
             data: {
                 "id": EVENT_ID
             },
-            timeout: 5000,
+            timeout: 10000,
             url: '/events/ajax_get_aggregate_votes',
             success: function (data){
                 var lineChart = new MeteorCharts.Line({
@@ -193,6 +193,8 @@ Kanari.main = (function($, document, window, undefined) {
 	      }, function(track){
 			  $("#uploadStatus").html("Uploaded: <a href='" + track.permalink_url + "'>" + track.permalink_url + "</a>");
               $("#event-uri").val(track.uri);
+              updateEvent({"event[soundcloud_uri]": track.uri});
+//              updateEvent({"soundcloud_uri": track.uri});
 			  $("#uploadStatus").trigger("UPLOAD_COMPLETE", [{uri: track.uri}]);
 		  });
 	    }
@@ -271,10 +273,27 @@ Kanari.main = (function($, document, window, undefined) {
             timeout: 10000,
             url: '/events/ajax_set_event_time',
             success: function (data){
-                console.log("Updated start_time for event successfully");
+                console.log("Updated time for event successfully");
             },
             error: function (e) {
                 console.log("An error occurred, text: " + e.statusText + "; statusCode: " + e.status);
+            }
+        });
+    }
+
+    function updateEvent(hash)
+    {
+        console.log('Updating event with:' + hash);
+        $.ajax({
+            type: 'PATCH',
+            data: hash,
+            timeout: 10000,
+            url: '/events/'+EVENT_ID,
+            success: function (data){
+                console.log("Updated event successfully");
+            },
+            error: function (e) {
+                console.log("An error occurred updating event, text: " + e.statusText + "; statusCode: " + e.status);
             }
         });
     }
