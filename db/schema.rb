@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20131019164843) do
     t.string   "title"
     t.string   "event_code"
     t.string   "soundcloud_url"
+    t.string   "soundcloud_uri"
     t.datetime "start_time"
     t.datetime "end_time"
     t.datetime "created_at"
