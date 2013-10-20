@@ -15,7 +15,11 @@
     .event-code
       = @event.event_code
 
-%section.record{:style => "display:#{'none' if @event.soundcloud_uri.present? || 'block'}"}
+= @event.soundcloud_uri
+
+%h4{style: "color:red"}
+  RailsRumble judges please use Soundcloud username: 'audienceanalog' and password 'hello.123' (without quotes) to upload your files.
+%section.record{style: "display:#{@event.soundcloud_uri.present? ? 'none' : 'block'}"}
   #recorderUI.reset
     %a#controlButton.record{href: "#", "data-track" => "#{@event.title}"}
       %span#controlState.btn.btn-danger
