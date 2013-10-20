@@ -120,6 +120,7 @@ Kanari.main = (function($, document, window, undefined) {
 			.on('click', '#reset', reset)
 			.on('UPLOAD_COMPLETE', showPlayer)
             .on('mousemove', function(e){
+                //console.log(e.pageX);
 			    $('#testing').css({
 			        left:  e.pageX,
 			        top:   0
@@ -128,7 +129,26 @@ Kanari.main = (function($, document, window, undefined) {
             .on('WIDGET_INITIALIZED', function(){
                 iframeElement   = document.querySelector('iframe');
                 widget   = SC.Widget(iframeElement);
-                console.log(widget);
+                widget.bind(SC.Widget.Events.READY, ready());
+                function ready() {
+                        $(".kanari-container").on("click", {
+                            duration: widget.getDuration(function(durationSC) {
+                                console.log('Duration: ' + durationSC);
+                            })
+                        }, function(e){
+                            alert(e.data.duration);
+                            //setPlayhead();
+                        });
+
+                        function setPlayhead(e){
+                            alert("hi");
+                            var x = e.pageX;
+
+                        }
+                    });
+
+                }
+
             })
 
         //@nathanTODO next step attach click event on SC graph to set number of milliseconds and play from location on chart
@@ -238,7 +258,7 @@ Kanari.main = (function($, document, window, undefined) {
         
         setTimeout(function() {
             $(document).trigger("WIDGET_INITIALIZED");
-        }, 8000);
+        }, 13500);
 	}
 	
 	
