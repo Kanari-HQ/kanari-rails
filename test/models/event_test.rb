@@ -19,8 +19,8 @@ describe Event do
     hash = event.group_votes_by_timestamp(event.start_time, event.votes)
 
     hash["thumbs-up"][0].must_equal 3
-    hash["thumbs-up"][0].must_equal 1
-    hash["thumbs-down"][1].must_equal 4
+    hash["thumbs-up"][1].must_equal 1
+    hash["thumbs-down"][0].must_equal 4
     hash["thumbs-down"][1].must_equal 1
   end
 
