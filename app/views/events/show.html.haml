@@ -1,11 +1,15 @@
 :javascript
   var EVENT_ID = "#{@event.id}";
 
-%p#notice= notice
+%header
+  %a{:href => root_path}
+    %img.logo{alt: "Responsive image", src: "/assets/kanari-logo-final.gif"}
+.container
+  %p#notice= notice
 
-= link_to 'Edit', edit_event_path(@event)
-\|
-= link_to 'Return Home', root_path
+  = link_to 'Edit', edit_event_path(@event)
+  \|
+  = link_to 'Return Home', root_path
 
 %header
   %h1
@@ -58,7 +62,7 @@
   %input{id: "event-uri", type: "hidden", value: "#{@event.soundcloud_uri}"}
   %button.btn.btn-info#makeplayer View Stats
 
-.kanari-container{style: "position: relative; overflow: hidden;"}
-  #graph
-  #player
-  #cursor{style: "position: absolute; height: 100%; background: #ff0000; width: 3px;"}
+  .kanari-container{style: "position: relative; overflow: hidden;"}
+    #graph
+    #player
+    #cursor{style: "position: absolute; height: 100%; background: #ff0000; width: 3px;"}
