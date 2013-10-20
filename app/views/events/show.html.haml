@@ -1,7 +1,7 @@
-#meteor-data{:"data-votes" => "#{@data_votes}"}
+:javascript
+  var EVENT_ID = "#{@event.id}";
 
 %p#notice= notice
-
 
 - if @event.soundcloud_url
   .container{style: "position: relative; overflow: hidden;"}
