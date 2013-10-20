@@ -7,18 +7,44 @@ span{
     font-size: 35px;
   }
   &#otherControls{
-    font-size: 35px;
   }
 
+}
+
+.event-code{
+  font-size: 36px;
+  color: #566eff;
+}
+
+#recorderUI{
+  text-align: center;
+  background: #2c327c;
+  padding: 25px 0;
+  width: 400px;
+  margin: 0 auto;
+  border-radius: 25px;
+  #timer{
+    margin: 15px auto;
+    background-color: #566eff;
+    width: 200px;
+    border-radius: 15px;
+  }
 }
 
 #otherControls{
 
   span{
+    font-size: 35px;
   }
   display: inline-block;
 }
 
 .kanari-container{
   width: 960px;
+  #cursor{
+    position: absolute;
+    height: 75%;
+    background: #566eff;
+    width: 3px;
+  }
 }
