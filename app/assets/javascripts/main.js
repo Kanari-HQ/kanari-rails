@@ -157,8 +157,8 @@ Kanari.main = (function($, document, window, undefined) {
         console.log("stopRecord method");
         updateEventTime('end_time');
 	    setRecorderUIState("recorded");
-        $("#controlState").text("Play");
-        $("#upload").removeClass("disabled");
+        $("#controlState").hide()
+        $("#upload").removeClass("hide");
         $("#controlState").children(".icon").removeClass(".glyphicon-stop");
         $("#controlState").children(".icon").addClass(".glyphicon-play");
 
@@ -195,6 +195,7 @@ Kanari.main = (function($, document, window, undefined) {
 	      }, function(track){
 			  $("#uploadStatus").html("Uploaded: <a href='" + track.permalink_url + "'>" + track.permalink_url + "</a>");
               $("#event-uri").val(track.uri);
+              $("#controlState").addClass("hide");
               updateEvent({"event[soundcloud_url]": track.permalink_url, "event[soundcloud_uri]": track.uri});
 			  $("#uploadStatus").trigger("UPLOAD_COMPLETE", [{uri: track.uri}]);
 		  });
