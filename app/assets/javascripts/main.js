@@ -68,7 +68,7 @@ Kanari.main = (function($, document, window, undefined) {
 		$(document)
 			.on('click', '#recorderUI.reset #controlButton', startRecord)
 			.on('click', '#recorderUI.recording #controlButton, #recorderUI.playing #controlButton', stopRecord)			
-			.on('click', '#recorderUI.recorded #controlButton', playRecord)						
+//			.on('click', '#recorderUI.recorded #controlButton', playRecord)
 			.on('click', '#upload', uploadFile)
 			.on('click', '#makeplayer', genPlayer)
 			.on('click', '#reset', reset)
@@ -99,12 +99,8 @@ Kanari.main = (function($, document, window, undefined) {
 
                         });
                     });
-
                 }
-
             });
-
-
     }
 
     /* Private Methods ________________________________________________________________ */
@@ -121,6 +117,8 @@ Kanari.main = (function($, document, window, undefined) {
             timeout: 10000,
             url: '/events/ajax_get_aggregate_votes',
             success: function (data){
+                $(".state").text("Initializing SoundCloud player");
+
                 var lineChart = new MeteorCharts.Line({
                     container: 'graph',
                     model: data,
@@ -157,10 +155,13 @@ Kanari.main = (function($, document, window, undefined) {
         console.log("stopRecord method");
         updateEventTime('end_time');
 	    setRecorderUIState("recorded");
-        $("#controlState").hide()
-        $("#upload").removeClass("hide");
+//        $("#controlState").text("Play");
+//        $("#upload").removeClass("disabled");
+        $("#upload").fadeIn();
         $("#controlState").children(".icon").removeClass(".glyphicon-stop");
-        $("#controlState").children(".icon").addClass(".glyphicon-play");
+        $("#controlState").hide();
+
+//        $("#controlState").children(".icon").addClass(".glyphicon-play");
 
 	    SC.recordStop();
 	    e.preventDefault();
@@ -169,7 +170,7 @@ Kanari.main = (function($, document, window, undefined) {
 	function playRecord(e) {
 	    updateTimer(0);
 	    setRecorderUIState("playing");
-        $("#controlState").children(".icon").removeClass(".glyphicon-play");
+//        $("#controlState").children(".icon").removeClass(".glyphicon-play");
         $("#controlState").children(".icon").addClass(".glyphicon-pause");
 	    SC.recordPlay({
 	      progress: function(ms){
@@ -186,16 +187,13 @@ Kanari.main = (function($, document, window, undefined) {
 	  setRecorderUIState("uploading");
 	  SC.connect({
 	    connected: function(){
-	      $("#uploadStatus").html("Uploading...");
 	      SC.recordUpload({
 	        track: {
 	          title: $("#controlButton").data("track"),
 	          sharing: "public"
 	        }
 	      }, function(track){
-			  $("#uploadStatus").html("Uploaded: <a href='" + track.permalink_url + "'>" + track.permalink_url + "</a>");
               $("#event-uri").val(track.uri);
-              $("#controlState").addClass("hide");
               updateEvent({"event[soundcloud_url]": track.permalink_url, "event[soundcloud_uri]": track.uri});
 			  $("#uploadStatus").trigger("UPLOAD_COMPLETE", [{uri: track.uri}]);
 		  });
@@ -203,14 +201,14 @@ Kanari.main = (function($, document, window, undefined) {
 	  });
 	  e.preventDefault();
 	}		
-	
-	
+
+
 	function showPlayer(e, object){
 		var uri = object.uri;
 		console.log("SoundCloud track loading:" + uri)
+        $(".state").text("Creating chart...");
 
         setTimeout(function() {
-            console.log("called making chart");
             makeChart()
         }, 3000);
 
@@ -232,7 +230,12 @@ Kanari.main = (function($, document, window, undefined) {
                             show_comments: false,
                             show_playcount:	false,
                             show_user: false
-                        }, document.getElementById("player"))}, 10000);
+                        }, document.getElementById("player"))
+        }, 10000);
+
+        setTimeout(function() {
+            $(".state").text("Your event is complete, enjoy the audience the feedback.");
+        }, 12000)
         
         setTimeout(function() {
             $(document).trigger("WIDGET_INITIALIZED");
@@ -242,7 +245,9 @@ Kanari.main = (function($, document, window, undefined) {
 	
 	function genPlayer(){
       var eventUri = $('#event-uri').val();
-      console.log("Testing player: "+ eventUri);
+
+      $(".state").text("Creating charts");
+        console.log("Testing player: "+ eventUri);
 	  $("#uploadStatus").trigger("UPLOAD_COMPLETE", [{uri: eventUri}]);
 	}
 	
@@ -261,7 +266,7 @@ Kanari.main = (function($, document, window, undefined) {
 	  // state can be reset, recording, recorded, playing, uploading
 	  // visibility of buttons is managed via CSS
 	  $("#recorderUI").attr("class", state);
-      $("#state").text(state);
+      $(".state").text(state);
 	}
 
     function updateEventTime(which_time)
