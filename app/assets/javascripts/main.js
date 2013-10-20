@@ -14,81 +14,6 @@ Kanari.main = (function($, document, window, undefined) {
     "use strict";
     // configuration properties
 
-
-	var secondsInYear = 60 * 60 * 24 * 365;
-	
-	// model configuration (data)
-	var model = {
-	  title: 'Kanari',
-	  series: [{
-	    title: 'Thumbs Up',
-	    points: [
-	      {x: secondsInYear * 0, y: 7.0},
-	      {x: secondsInYear * 1, y: 6.9},
-	      {x: secondsInYear * 2, y: 9.5},
-	      {x: secondsInYear * 3, y: 14.5},
-	      {x: secondsInYear * 4, y: 18.2},
-	      {x: secondsInYear * 5, y: 21.5},
-	      {x: secondsInYear * 6, y: 25.2},
-	      {x: secondsInYear * 7, y: 26.5},
-	      {x: secondsInYear * 8, y: 23.3},
-	      {x: secondsInYear * 9, y: 18.3},
-	      {x: secondsInYear * 10, y: 13.9},
-	      {x: secondsInYear * 11, y: 9.6}
-	    ] 
-	  },
-	  {
-	    title: 'Thumbs Down',
-	    points: [
-	      {x: secondsInYear * 0, y: -0.2},
-	      {x: secondsInYear * 1, y: 0.8}, 
-	      {x: secondsInYear * 2, y: 5.7},
-	      {x: secondsInYear * 3, y: 11.3},
-	      {x: secondsInYear * 4, y: 17.0},
-	      {x: secondsInYear * 5, y: 22.0},
-	      {x: secondsInYear * 6, y: 24.8},
-	      {x: secondsInYear * 7, y: 24.1},
-	      {x: secondsInYear * 8, y: 20.1},
-	      {x: secondsInYear * 9, y: 14.1},
-	      {x: secondsInYear * 10, y: 8.6},
-	      {x: secondsInYear * 11, y: 2.5}
-	    ] 
-	  }, {
-	    title: 'Confused',
-	    points: [
-	      {x: secondsInYear * 0, y: -0.2},
-	      {x: secondsInYear * 1, y: 0.8}, 
-	      {x: secondsInYear * 2, y: 5.7},
-	      {x: secondsInYear * 3, y: 11.3},
-	      {x: secondsInYear * 4, y: 17.0},
-	      {x: secondsInYear * 5, y: 22.0},
-	      {x: secondsInYear * 6, y: 24.8},
-	      {x: secondsInYear * 7, y: 24.1},
-	      {x: secondsInYear * 8, y: 20.1},
-	      {x: secondsInYear * 9, y: 14.1},
-	      {x: secondsInYear * 10, y: 8.6},
-	      {x: secondsInYear * 11, y: 2.5}
-	    ] 
-	  }, {
-	    title: 'Love',
-	    points: [
-	      {x: secondsInYear * 0, y: -0.2},
-	      {x: secondsInYear * 1, y: 0.8}, 
-	      {x: secondsInYear * 2, y: 5.7},
-	      {x: secondsInYear * 3, y: 11.3},
-	      {x: secondsInYear * 4, y: 17.0},
-	      {x: secondsInYear * 5, y: 22.0},
-	      {x: secondsInYear * 6, y: 24.8},
-	      {x: secondsInYear * 7, y: 24.1},
-	      {x: secondsInYear * 8, y: 20.1},
-	      {x: secondsInYear * 9, y: 14.1},
-	      {x: secondsInYear * 10, y: 8.6},
-	      {x: secondsInYear * 11, y: 2.5}
-	    ] 
-	  }]
-	};
-    
-	
 	// view configuration (styling)
 	var view = {
 	  width: 960,
@@ -163,6 +88,7 @@ Kanari.main = (function($, document, window, undefined) {
 	
 	function makeChart(){
         console.log("making the Chart");
+        var model     = $('#meteor-data').data('votes');
 		var lineChart = new MeteorCharts.Line({
 					  container: 'graph',
 					  model: model,
