@@ -46,7 +46,7 @@ Kanari.main = (function($, document, window, undefined) {
 			.on('UPLOAD_COMPLETE', showPlayer)
             .on('mousemove', function(e){
                 //console.log(e.pageX);
-			    $('#testing').css({
+			    $('#cursor').css({
 			        left:  e.pageX,
 			        top:   0
 			    });
@@ -56,25 +56,25 @@ Kanari.main = (function($, document, window, undefined) {
                 widget   = SC.Widget(iframeElement);
                 widget.bind(SC.Widget.Events.READY, ready());
                 function ready() {
-                        $(".kanari-container").on("click", {
-                            duration: widget.getDuration(function(durationSC) {
-                                console.log('Duration: ' + durationSC);
-                            })
-                        }, function(e){
-                            alert(e.data.duration);
-                            //setPlayhead();
+                    $(".kanari-container").on("click", {
+                        widget: widget
+                    }, function(e){
+                        widget = e.data.widget;
+                        var setPlayhead = widget.getDuration(function(durationSC) {
+                            var playheadX = $("#cursor").offset().left
+                            var containerWidth = $(".kanari-container").width()
+                            console.log('Duration: ' + durationSC);
+                            var new_playhead = Math.floor((playheadX / containerWidth) * durationSC);
+                            console.log("New Playhead: " + new_playhead);
+                            widget.play().seekTo(new_playhead);
+
                         });
-
-                        function setPlayhead(e){
-                            alert("hi");
-                            var x = e.pageX;
-
-                        }
                     });
 
                 }
 
-            })
+            });
+
 
         //@nathanTODO next step attach click event on SC graph to set number of milliseconds and play from location on chart
 

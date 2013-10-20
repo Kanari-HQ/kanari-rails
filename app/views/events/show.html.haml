@@ -29,22 +29,27 @@
 %header
   %h1
     = @event.title.titleize
-  %h2
-    Your Event Code:
+    | Event Code:
     = @event.event_code
 %section.record
   #recorderUI.reset
     %a#controlButton.record{href: "#", "data-track" => "#{@event.title}"}
-      %span#controlState.btn.btn-danger Record
-    %h1#state
-    %h1#timer 0:00
+      %span#controlState.btn.btn-danger
+        %span.icon.glyphicon.glyphicon-record
+        Record
     #otherControls
-      %a#reset.btn.btn-success{href: "#"} Reset
-      %a#upload.btn.btn-info{href: "#"} Upload
+      %span#upload.btn.btn-info{href: "#"}
+        %span.icon.glyphicon.glyphicon-cloud-upload
+        Upload
+      -#%a#reset.btn.btn-success{href: "#"}
+        %span.icon.glyphicon.glyphicon-record
+          Reset
+      #state
+    %h1#timer 0:00
     #uploadStatus
   %input{id: "event-uri", type: "text", value: "https://api.soundcloud.com/tracks/116130140", size: "100"}
   %button.btn.btn-info#makeplayer Test Player
 .kanari-container{style: "position: relative; overflow: hidden;"}
   #graph
   #player
-  #testing{style: "position: absolute; height: 100%; background: #ff0000; width: 3px;"}
+  #cursor{style: "position: absolute; height: 100%; background: #ff0000; width: 3px;"}
