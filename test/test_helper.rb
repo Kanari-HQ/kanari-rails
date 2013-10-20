@@ -3,21 +3,17 @@ require File.expand_path('../../config/environment', __FILE__)
 
 # rake TESTOPTS='--seed=53594'
 require "minitest/autorun"
+require 'minitest/spec'
+require 'minitest/unit'
+require "minitest/focus"
 require 'capybara/rails'
 require 'active_support/testing/setup_and_teardown'
-require 'minitest/pride' # Coloring
-
 
 require 'factory_girl'
-# if repeating "FactoryGirl" is too verbose, ie. create(:user) instead of FactoryGirl.create(:user)
-include FactoryGirl::Syntax::Methods
-
+include FactoryGirl::Syntax::Methods # No longer need "FactoryGirl" to create factories
 
 require 'rails/test_help'
-
-class ActiveSupport::TestCase
-  ActiveRecord::Migration.check_pending!
-end
+ActiveRecord::Migration.check_pending!
 
 class IntegrationTest < MiniTest::Spec
   include Rails.application.routes.url_helpers
@@ -31,4 +27,15 @@ class HelperTest < MiniTest::Spec
   register_spec_type(/Helper$/, self)
 end
 
-Turn.config.format = :outline
+DatabaseCleaner.strategy = :transaction
+class MiniTest::Spec
+  before :each do
+    DatabaseCleaner.start
+  end
+
+  after :each do
+    DatabaseCleaner.clean
+  end
+end
+
+#Turn.config.format = :outline

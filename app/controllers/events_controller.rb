@@ -10,6 +10,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    @data_votes = Event.new.aggregate_votes.to_json
   end
 
   # GET /events/new
