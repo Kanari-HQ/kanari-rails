@@ -156,6 +156,7 @@ Kanari.main = (function($, document, window, undefined) {
         updateEventTime('end_time');
 	    setRecorderUIState("recorded");
         $("#controlState").text("Play");
+        $("#upload").removeClass("disabled");
         $("#controlState").children(".icon").removeClass(".glyphicon-stop");
         $("#controlState").children(".icon").addClass(".glyphicon-play");
 
@@ -214,11 +215,11 @@ Kanari.main = (function($, document, window, undefined) {
         setTimeout(function() {
             console.log("drawing player after many seconds or it bombs out." + uri);
             SC.oEmbed(uri, {auto_play: false,
-                            color: "#000000",
-                            theme_color: "#000000",
+                            color: "#1B1B24",
+                            theme_color: "#1B1B24",
                             iframe: true,
                             show_artwork: false,
-                            "height": 81,
+                            "height": 55,
                             maxwidth: 960,
                             maxheight: 100,
                             buying:	false,
