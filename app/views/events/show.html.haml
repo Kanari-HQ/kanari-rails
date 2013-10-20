@@ -29,11 +29,10 @@
 %header
   %h1
     = @event.title.titleize
-    | Event Code:
-    %span.event-code
-  %h3
-    Event Code (for participants):
-    = @event.event_code
+  %h2
+    Participant event code:
+    .event-code
+      = @event.event_code
 %section.record
   #recorderUI.reset
     %a#controlButton.record{href: "#", "data-track" => "#{@event.title}"}
@@ -41,14 +40,14 @@
         %span.icon.glyphicon.glyphicon-record
         Record
     #otherControls
-      %span#upload.btn.btn-info{href: "#"}
+      %span#upload.btn.btn-info.disabled{href: "#"}
         %span.icon.glyphicon.glyphicon-cloud-upload
         Upload
       -#%a#reset.btn.btn-success{href: "#"}
         %span.icon.glyphicon.glyphicon-record
           Reset
-      #state
     %h1#timer 0:00
+    %h3#state
     #uploadStatus
   - if @event.start_time.present?
     %button.btn.btn-info#makeplayer View Stats
