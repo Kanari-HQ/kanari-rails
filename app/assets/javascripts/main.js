@@ -57,7 +57,8 @@ Kanari.main = (function($, document, window, undefined) {
     @return {Null} No return value
     **/
     function init() {
-
+		// line charts are instantiated with a container DOM element,
+		// a model, and a view
 
         var iframeElement;
         var widget;
@@ -136,6 +137,8 @@ Kanari.main = (function($, document, window, undefined) {
 	    updateTimer(0);
 	    SC.record({
 	      start: function(){
+            console.log("SC.record#start method");
+            updateEventTime('start_time');
 	        setRecorderUIState("recording");
             $("#controlState").text("Stop");
               $("#controlState").children(".icon").removeClass(".glyphicon-record");
@@ -149,6 +152,8 @@ Kanari.main = (function($, document, window, undefined) {
 	}
 	
 	function stopRecord(e) {
+        console.log("stopRecord method");
+        updateEventTime('end_time');
 	    setRecorderUIState("recorded");
         $("#controlState").text("Play");
         $("#controlState").children(".icon").removeClass(".glyphicon-stop");
@@ -253,6 +258,25 @@ Kanari.main = (function($, document, window, undefined) {
 	  $("#recorderUI").attr("class", state);
       $("#state").text(state);
 	}
+
+    function updateEventTime(which_time)
+    {
+        $.ajax({
+            type: 'POST',
+            data: {
+                id: EVENT_ID,
+                which_event_time: which_time
+            },
+            timeout: 10000,
+            url: '/events/ajax_set_event_time',
+            success: function (data){
+                console.log("Updated start_time for event successfully");
+            },
+            error: function (e) {
+                console.log("An error occurred, text: " + e.statusText + "; statusCode: " + e.status);
+            }
+        });
+    }
 
     return {
         init: init
