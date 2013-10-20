@@ -1,0 +1,35 @@
+html,
+body {
+  height: 100%;
+}
+
+html {
+  background: #1B1B24;
+}
+
+body {
+
+  padding-top: 50px;
+  color: #ffffff;
+  h1 {
+    color: #464368
+  }
+
+  a {
+    color: #5BC0DE;
+    text-decoration: none;
+  }
+
+  a:hover,
+  a:focus {
+    color: #5BC0DE;
+    text-decoration: underline;
+  }
+
+  a:focus {
+    outline: thin dotted #333;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+
+}

@@ -1,3 +1,24 @@
 // Place all the styles related to the Events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+span{
+  &#controlState {
+    font-size: 35px;
+  }
+  &#otherControls{
+    font-size: 35px;
+  }
+
+}
+
+#otherControls{
+
+  span{
+  }
+  display: inline-block;
+}
+
+.kanari-container{
+  width: 960px;
+}
