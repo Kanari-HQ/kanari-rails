@@ -22,6 +22,9 @@ Kanari.main = (function($, document, window, undefined) {
         backgroundColor: '#1B1B24',
         width: 960,
         height: 400,
+        xAxis: {
+            formatter: 'Number' // can be Number, Seconds, or Date
+        },
         series: [
             {
                 stroke: '#645DBA',
@@ -73,7 +76,7 @@ Kanari.main = (function($, document, window, undefined) {
             .on('mousemove', function(e){
                 //console.log(e.pageX);
 			    $('#cursor').css({
-			        left:  e.pageX,
+			        left:  e.pageX - $(".kanari-container").offset().left,
 			        top:   0
 			    });
 			})
@@ -87,7 +90,7 @@ Kanari.main = (function($, document, window, undefined) {
                     }, function(e){
                         widget = e.data.widget;
                         var setPlayhead = widget.getDuration(function(durationSC) {
-                            var playheadX = $("#cursor").offset().left - $(".kanari-container").offset().left;
+                            var playheadX = $("#cursor").offset().left;
                             var containerWidth = $(".kanari-container").width();
                             console.log('Track Duration: ' + durationSC);
                             var new_playhead = Math.floor((playheadX / containerWidth) * durationSC);
