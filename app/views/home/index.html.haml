@@ -27,7 +27,7 @@
           %ul.list-group
           - @events.each do |event|
             %li.list-group-item
-              = link_to event.title, event
+              = link_to "#{event.title} #{event.soundcloud_uri.present? ? '(Complete)': ''}", event
 
 %hr
 .container
