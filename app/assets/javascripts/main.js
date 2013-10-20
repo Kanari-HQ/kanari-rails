@@ -15,9 +15,36 @@ Kanari.main = (function($, document, window, undefined) {
     // configuration properties
 
 	// view configuration (styling)
-	var view = {
-	  width: 960,
-	  height: 400
+
+    // line charts are instantiated with a container DOM element,
+    // a model, and a view
+    var view = {
+        backgroundColor: '#1B1B24',
+        width: 960,
+        height: 400,
+        series: [
+            {
+                stroke: '#645DBA', // light green
+                strokeWidth: 2,
+                lineJoin: 'round'
+            },
+            {
+                stroke: '#8455B7', // light blue
+                strokeWidth: 2,
+                lineJoin: 'round'
+            },
+            {
+                stroke: '#5483B4', // pink
+                strokeWidth: 2,
+                lineJoin: 'round'
+            },
+            {
+                stroke: '#E0C25E', // pink
+                strokeWidth: 2,
+                lineJoin: 'round'
+            }
+
+        ]
 	};
 	
     /* Public Methods _________________________________________________________________ */
@@ -61,9 +88,9 @@ Kanari.main = (function($, document, window, undefined) {
                     }, function(e){
                         widget = e.data.widget;
                         var setPlayhead = widget.getDuration(function(durationSC) {
-                            var playheadX = $("#cursor").offset().left
-                            var containerWidth = $(".kanari-container").width()
-                            console.log('Duration: ' + durationSC);
+                            var playheadX = $("#cursor").offset().left - $(".kanari-container").offset().left;
+                            var containerWidth = $(".kanari-container").width();
+                            console.log('Track Duration: ' + durationSC);
                             var new_playhead = Math.floor((playheadX / containerWidth) * durationSC);
                             console.log("New Playhead: " + new_playhead);
                             widget.play().seekTo(new_playhead);
@@ -74,10 +101,6 @@ Kanari.main = (function($, document, window, undefined) {
                 }
 
             });
-
-
-        //@nathanTODO next step attach click event on SC graph to set number of milliseconds and play from location on chart
-
 
 
     }
@@ -118,6 +141,8 @@ Kanari.main = (function($, document, window, undefined) {
             updateEventTime('start_time');
 	        setRecorderUIState("recording");
             $("#controlState").text("Stop");
+              $("#controlState").children(".icon").removeClass(".glyphicon-record");
+              $("#controlState").children(".icon").addClass(".glyphicon-stop");
 	      },
 	      progress: function(ms, avgPeak){
 	        updateTimer(ms);
@@ -131,13 +156,18 @@ Kanari.main = (function($, document, window, undefined) {
         updateEventTime('end_time');
 	    setRecorderUIState("recorded");
         $("#controlState").text("Play");
-        SC.recordStop();
+        $("#controlState").children(".icon").removeClass(".glyphicon-stop");
+        $("#controlState").children(".icon").addClass(".glyphicon-play");
+
+	    SC.recordStop();
 	    e.preventDefault();
 	}
 	
 	function playRecord(e) {
 	    updateTimer(0);
 	    setRecorderUIState("playing");
+        $("#controlState").children(".icon").removeClass(".glyphicon-play");
+        $("#controlState").children(".icon").addClass(".glyphicon-pause");
 	    SC.recordPlay({
 	      progress: function(ms){
 	        updateTimer(ms);
