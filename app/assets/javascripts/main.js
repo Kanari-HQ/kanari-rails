@@ -88,12 +88,25 @@ Kanari.main = (function($, document, window, undefined) {
 	
 	function makeChart(){
         console.log("making the Chart");
-        var model     = $('#meteor-data').data('votes');
-		var lineChart = new MeteorCharts.Line({
-					  container: 'graph',
-					  model: model,
-					  view: view
-					});
+        $.ajax({
+            type: 'GET',
+            data: {
+                "id": EVENT_ID
+            },
+            timeout: 5000,
+            url: '/events/ajax_get_aggregate_votes',
+            success: function (data){
+                var lineChart = new MeteorCharts.Line({
+                    container: 'graph',
+                    model: data,
+                    view: view
+                });
+            },
+            error: function (e) {
+                console.log("An error occurred, text: " + e.statusText + "; statusCode: " + e.status);
+                alert('There was an error loading the data, please try again.');
+            }
+        });
 	}
 	
 	//soundcloud

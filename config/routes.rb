@@ -1,6 +1,10 @@
 Kanari::Application.routes.draw do
 
-  resources :events
+  resources :events do
+    collection do
+      get :ajax_get_aggregate_votes
+    end
+  end
 
   root 'home#index'
 
