@@ -105,6 +105,8 @@ GEM
     mime-types (1.25)
     mini_portile (0.5.1)
     minitest (4.7.5)
+    minitest-focus (1.0.0)
+      minitest (~> 4.4)
     multi_json (1.8.2)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
@@ -196,6 +198,7 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails
+  minitest-focus
   pg
   rails (= 4.0.0)
   sass-rails (~> 4.0.0)

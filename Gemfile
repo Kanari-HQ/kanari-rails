@@ -12,6 +12,7 @@ group :test do
   gem 'capybara'
   gem 'guard-spork'
   gem 'turn'
+  gem 'minitest-focus'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
