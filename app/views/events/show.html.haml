@@ -19,8 +19,8 @@
         1. Share this with event code with your audience
         .event-code
           = "&nbsp;&nbsp;&nbsp;#{@event.event_code}".html_safe
-        2. Record your event, and have your audience
-        = link_to "cast their votes", vote_votes_path({:event_code => @event.event_code}), target: "_blank"
+        2. While recording your event, have your audience
+        = link_to "vote", vote_votes_path({:event_code => @event.event_code}), target: "_blank"
 
 
   %section.record{style: "display:#{@event.soundcloud_uri.present? ? 'none' : 'block'}"}
@@ -32,14 +32,14 @@
           %span.icon.glyphicon.glyphicon-record
           Record
       #otherControls
-        %span#upload.btn.btn-info.disabled{href: "#"}
+        %span#upload.btn.btn-info{href: "#", style: "display:none"}
           %span.icon.glyphicon.glyphicon-cloud-upload
           Upload
         -#%a#reset.btn.btn-success{href: "#"}
           %span.icon.glyphicon.glyphicon-record
             Reset
       %h1#timer 0:00
-      %h3#state
+      %h3.state
       #uploadStatus
   - if @event.soundcloud_uri.present?
     - if @event.soundcloud_url
@@ -62,8 +62,9 @@
         = @event.end_time
     %input{id: "event-uri", type: "hidden", value: "#{@event.soundcloud_uri}"}
     %button.btn.btn-info#makeplayer View Stats
+    %h3.state
 
-    .kanari-container{style: "position: relative; overflow: hidden;"}
-      #graph
-      #player
-      #cursor
+  .kanari-container{style: "position: relative; overflow: hidden;"}
+    #player
+    #graph
+    #cursor
