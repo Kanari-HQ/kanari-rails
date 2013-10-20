@@ -11,7 +11,7 @@
       = form_tag(vote_votes_path, method: "get") do
         .field
           -#= label_tag :event_code
-          = text_field_tag :event_code, "enter event code"
+          = text_field_tag :event_code
           %span
             = submit_tag 'Go', class: "btn btn-info btn-lg"
     .col-md-4.center
