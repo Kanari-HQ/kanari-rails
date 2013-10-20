@@ -1,59 +1,63 @@
 :javascript
   var EVENT_ID = "#{@event.id}";
 
-%p#notice= notice
-
-- if @event.soundcloud_url
-  .container{style: "position: relative; overflow: hidden;"}
-    #graph{"data-url" => "#{@event.soundcloud_url}"}
-    #player
-    #testing{style: "position: absolute; height: 100%; background: #ff0000; width: 3px;"}
-  %p
-    %b Soundcloud url:
-    = @event.soundcloud_url
-
-- if @event.start_time
-  %p
-    %b Start time:
-    = @event.start_time
-
-- if @event.end_time
-  %p
-    %b End time:
-    = @event.end_time
-
-= link_to 'Edit', edit_event_path(@event)
-\|
-= link_to 'Return Home', root_path
-
 %header
-  %h1
-    = @event.title.titleize
-  %h2
-    Participant event code:
-    .event-code
-      = @event.event_code
-%section.record
-  #recorderUI.reset
-    %a#controlButton.record{href: "#", "data-track" => "#{@event.title}"}
-      %span#controlState.btn.btn-danger
-        %span.icon.glyphicon.glyphicon-record
-        Record
-    #otherControls
-      %span#upload.btn.btn-info.disabled{href: "#"}
-        %span.icon.glyphicon.glyphicon-cloud-upload
-        Upload
-      -#%a#reset.btn.btn-success{href: "#"}
-        %span.icon.glyphicon.glyphicon-record
-          Reset
-    %h1#timer 0:00
-    %h3#state
-    #uploadStatus
-  - if @event.soundcloud_uri.present?
-    %input{id: "event-uri", type: "hidden", value: "#{@event.soundcloud_uri}"}
-    %button.btn.btn-info#makeplayer View Stats
+  %a{:href => root_path}
+    %img.logo{alt: "Responsive image", src: "/assets/kanari-logo-final.gif"}
+.container
+  %p#notice= notice
 
-.kanari-container{style: "position: relative; overflow: hidden;"}
-  #graph
-  #player
-  #cursor{style: "position: absolute; height: 100%; background: #ff0000; width: 3px;"}
+  - if @event.soundcloud_url
+    .container{style: "position: relative; overflow: hidden;"}
+      #graph{"data-url" => "#{@event.soundcloud_url}"}
+      #player
+      #testing{style: "position: absolute; height: 100%; background: #ff0000; width: 3px;"}
+    %p
+      %b Soundcloud url:
+      = @event.soundcloud_url
+
+  - if @event.start_time
+    %p
+      %b Start time:
+      = @event.start_time
+
+  - if @event.end_time
+    %p
+      %b End time:
+      = @event.end_time
+
+  = link_to 'Edit', edit_event_path(@event)
+  \|
+  = link_to 'Return Home', root_path
+
+  %header
+    %h1
+      = @event.title.titleize
+    %h2
+      Participant event code:
+      .event-code
+        = @event.event_code
+  %section.record
+    #recorderUI.reset
+      %a#controlButton.record{href: "#", "data-track" => "#{@event.title}"}
+        %span#controlState.btn.btn-danger
+          %span.icon.glyphicon.glyphicon-record
+          Record
+      #otherControls
+        %span#upload.btn.btn-info.disabled{href: "#"}
+          %span.icon.glyphicon.glyphicon-cloud-upload
+          Upload
+        -#%a#reset.btn.btn-success{href: "#"}
+          %span.icon.glyphicon.glyphicon-record
+            Reset
+      %h1#timer 0:00
+      %h3#state
+      #uploadStatus
+    - if @event.soundcloud_uri.present?
+      %input{id: "event-uri", type: "hidden", value: "#{@event.soundcloud_uri}"}
+      %button.btn.btn-info#makeplayer View Stats
+
+  .kanari-container{style: "position: relative; overflow: hidden;"}
+    #graph
+    #player
+    #cursor{style: "position: absolute; height: 100%; background: #ff0000; width: 3px;"}

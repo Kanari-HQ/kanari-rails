@@ -24,22 +24,21 @@ Kanari.main = (function($, document, window, undefined) {
         height: 400,
         series: [
             {
-                stroke: '#645DBA', // light green
+                stroke: '#645DBA',
                 strokeWidth: 2,
                 lineJoin: 'round'
             },
             {
-                stroke: '#8455B7', // light blue
+                stroke: '#8455B7',
+                lineJoin: 'round'
+            },
+            {
+                stroke: '#5483B4',
                 strokeWidth: 2,
                 lineJoin: 'round'
             },
             {
-                stroke: '#5483B4', // pink
-                strokeWidth: 2,
-                lineJoin: 'round'
-            },
-            {
-                stroke: '#E0C25E', // pink
+                stroke: '#E0C25E',
                 strokeWidth: 2,
                 lineJoin: 'round'
             }

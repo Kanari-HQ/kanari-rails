@@ -1,25 +1,33 @@
-= image_tag('kanari.jpeg')
-%br
+.jumbotron
+  .container
+    %img.img-responsive{alt: "Responsive image", src: "/assets/kanari-logo-final.gif"}/
+    %p Kanari allows you to test your performances with audiences before the big day
+    %p
+      %a.btn.btn-primary.btn-lg.kanari-btn Learn more
+.container
+  .row
+    .col-md-4
+      %h1
+        Create event
+      %button.btn.btn-lg
+        = link_to "Create Event", new_event_path
+    .col-md-4
+      %h1
+        Join event
+      = form_tag(vote_votes_path, method: "get") do
+        .field
+          = label_tag :event_code
+          = text_field_tag :event_code
+        .actions
+          = submit_tag 'Join', class: "btn btn-info btn-lg"
+    .col-md-4
+      - if @events.present?
+        %h1
+          Most Recent Events
+        %ul
+        - @events.each do |event|
+          %li
+            = link_to event.title, event
 
-%h1
-  Create Event
-%br
-= link_to "Click here to create", new_event_path
-%br
 
-%h1
-  Join event
-= form_tag(vote_votes_path, method: "get") do
-  .field
-    = label_tag :event_code
-    = text_field_tag :event_code
-  .actions
-    = submit_tag 'Join'
 
-- if @events.present?
-  %h1
-    Most Recent Events
-  %ul
-  - @events.each do |event|
-    %li
-      = link_to event.title, event
