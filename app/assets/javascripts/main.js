@@ -193,8 +193,7 @@ Kanari.main = (function($, document, window, undefined) {
 	      }, function(track){
 			  $("#uploadStatus").html("Uploaded: <a href='" + track.permalink_url + "'>" + track.permalink_url + "</a>");
               $("#event-uri").val(track.uri);
-              updateEvent({"event[soundcloud_uri]": track.uri});
-//              updateEvent({"soundcloud_uri": track.uri});
+              updateEvent({"event[soundcloud_url]": track.permalink_url, "event[soundcloud_uri]": track.uri});
 			  $("#uploadStatus").trigger("UPLOAD_COMPLETE", [{uri: track.uri}]);
 		  });
 	    }
