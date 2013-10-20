@@ -9,6 +9,30 @@ html {
 
 body {
 
+  .jumbotron {
+    background:url(/images/bg.jpg) repeat-x;
+
+  }
+
+  header{
+    img.logo{
+      margin: 20px;
+      height: 50px;
+    }
+  }
+
+  .jumbotron p {
+    font-family: "ff-dagny-web-pro",sans-serif;
+    color:#EEEB00;
+  }
+
+  .jumbotron .kanari-btn {
+    background:#564596;
+    border:#564596;
+
+  }
+
+
   padding-top: 50px;
   color: #ffffff;
   h1, h2, h3 {
