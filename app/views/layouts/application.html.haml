@@ -42,4 +42,5 @@
             redirect_uri: "http://messieurslikerumbles.r13.railsrumble.com/callback.html"
         });
 
-    %script{src: "http://s0.railsrumble.com/banner.js", type: "text/javascript"}
+    - unless current_page?('/votes/vote')
+      %script{src: "http://s0.railsrumble.com/banner.js", type: "text/javascript"}
