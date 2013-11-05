@@ -1,6 +1,22 @@
 html,
 body {
   height: 100%;
+  color: #ffffff;
+  h1, h2, h3 {
+    color: #464368
+  }
+
+  a {
+    color: #5BC0DE;
+    text-decoration: none;
+  }
+
+  a:hover,
+  a:focus {
+    color: #5BC0DE;
+    text-decoration: underline;
+  }
+
 }
 
 html {
@@ -86,31 +102,7 @@ body {
     }
   }
 
-  .container.home{
-    background-color: #eee;
-    border-radius: 15px;
-    .center{
-      text-align: center;
-      li{
-        text-align: left;
-      }
-    }
-  }
 
-  padding-top: 50px;
-  color: #ffffff;
-  h1, h2, h3 {
-    color: #464368
-  }
 
-  a {
-    color: #5BC0DE;
-    text-decoration: none;
-  }
 
-  a:hover,
-  a:focus {
-    color: #5BC0DE;
-    text-decoration: underline;
-  }
 }
