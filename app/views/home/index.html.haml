@@ -1,45 +1,45 @@
-.jumbotron
-  .container
-    %img.img-responsive{alt: "Responsive image", src: "/assets/kanari-logo-final-40d20b7067a46721ef187789b108e838.gif"}/
-    %h4.tagline User test your live event by recording and analyzing audience responses (Perfect for comedy stand-up routines, or theatre)
-    -#%p
-      %a.btn.btn-primary.btn-lg.kanari-btn Learn more
-.container.home
-  .row
-    .col-md-4.center
-      %h2 Enter Event Code
-      = form_tag(vote_votes_path, method: "get") do
-        .field
-          -#= label_tag :event_code
-          = text_field_tag :event_code
-          %span
-            = submit_tag 'Go', class: "btn btn-info btn-lg"
-    .col-md-4.center
-      %h2 Create an Event
-      %a.btn.btn-primary.btn-lg.btn-block.kanari-btn{:href => new_event_path}
-        Create Event
-        %span.glyphicon.glyphicon-chevron-right
-
-    .col-md-4.center
-      %h2 Previous Events
-      - if @events.present?
-        .panel.panel-default
-          %ul.list-group
-          - @events.each do |event|
-            %li.list-group-item
-              = link_to "#{event.title} #{event.soundcloud_uri.present? ? '(Complete)': ''}", event
-
-%hr
 .container
   .row
-  .col-md-4.center
-    / Begin MailChimp Signup Form
-    -#%link{href: "//cdn-images.mailchimp.com/embedcode/slim-081711.css", rel: "stylesheet", type: "text/css"}/
-    #mc_embed_signup
-      %form#mc-embedded-subscribe-form.validate{action: "http://radiolivechicago.us2.list-manage.com/subscribe/post?u=b250a55dae7e8097911003bb5&id=bf9a2db01b", method: "post", name: "mc-embedded-subscribe-form", novalidate: "", target: "_blank"}
-        %label{for: "mce-EMAIL"} Receive future updates:
-        %input#mce-EMAIL.email{name: "EMAIL", placeholder: "email address", required: "", type: "email", value: ""}/
-        .clear
-          .actions
-            %input#mc-embedded-subscribe.button{name: "subscribe", type: "submit", value: "Subscribe", class: "btn btn-info btn-lg"}/
-    / End mc_embed_signup
+    .jumbotron
+      %img.img-responsive{alt: "Responsive image", src: "/assets/kanari-logo-final-40d20b7067a46721ef187789b108e838.gif"}/
+      %h4.tagline Live event testing and analytics for theater, music, presentations, anything you experience start to finish
+      -#%p
+        %a.btn.btn-primary.btn-lg.kanari-btn Learn more
+  .panel
+    .panel-body
+      .row
+        .col-md-4
+          %h2 Enter Event Code
+          = form_tag(vote_votes_path, method: "get") do
+            .field
+              -#= label_tag :event_code
+              = text_field_tag :event_code
+              %span
+                = submit_tag 'Go', class: "btn btn-info btn-lg"
+        .col-md-4
+          %h2 Create an Event
+          %a.btn.btn-primary.btn-lg.btn-block.kanari-btn{:href => new_event_path}
+            Create Event
+            %span.glyphicon.glyphicon-chevron-right
+
+        .col-md-4
+          %h2 Previous Events
+          - if @events.present?
+            .panel.panel-default
+              %ul.list-group
+              - @events.each do |event|
+                %li.list-group-item
+                  = link_to "#{event.title} #{event.soundcloud_uri.present? ? '(Complete)': ''}", event
+
+  .row
+    .col-md-12
+      / Begin MailChimp Signup Form
+      -#%link{href: "//cdn-images.mailchimp.com/embedcode/slim-081711.css", rel: "stylesheet", type: "text/css"}/
+      #mc_embed_signup
+        %form#mc-embedded-subscribe-form.validate{action: "http://radiolivechicago.us2.list-manage.com/subscribe/post?u=b250a55dae7e8097911003bb5&id=bf9a2db01b", method: "post", name: "mc-embedded-subscribe-form", novalidate: "", target: "_blank"}
+          %label{for: "mce-EMAIL"} Receive future updates:
+          %input#mce-EMAIL.email{name: "EMAIL", placeholder: "email address", required: "", type: "email", value: ""}/
+          .clear
+            .actions
+              %input#mc-embedded-subscribe.button{name: "subscribe", type: "submit", value: "Subscribe", class: "btn btn-info btn-lg"}/
+      / End mc_embed_signup
