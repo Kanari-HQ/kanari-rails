@@ -234,7 +234,7 @@ Kanari.main = (function($, document, window, undefined) {
         }, 10000);
 
         setTimeout(function() {
-            $(".state").text("Your event is complete, enjoy the audience the feedback.");
+            $(".state").text("Your event is complete, enjoy the feedback.");
             var x = 0;  //horizontal coord
             var y = document.height; //vertical coord
             window.scroll(x,y);
