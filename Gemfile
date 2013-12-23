@@ -4,6 +4,9 @@ group :development do
   gem 'haml-rails'
 end
 
+#heroku asset precomp
+gem 'rails_12factor'
+
 group :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails'  # Used for fixtures, provides integration between factory_girl and rails
